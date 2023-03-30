@@ -16,23 +16,19 @@ const autoComplete = (req, res) => {
 
     axios.get("https://yummly2.p.rapidapi.com/feeds/auto-complete", options)
         .then((response) => {
-
-            // console.log(response.data)
             // Remove the extra Headers
             removeHeaders(res)
             
             // Response details and status
-            res.writeHead(response.status, response.headers)
-            res.write(JSON.stringify(response.data) || {message: "Sth"});
-            res.end()
+            res.set(response.headers)
+            res.status(response.status).json(response.data)
         })
         .catch((err) => {
-            removeHeaders(res) // remove the extra headers
-
+            // removeHeaders(res) // remove the extra headers
+            removeHeaders(res)
             // The Error response details and status
-            res.writeHead(err.response?.status, err.response?.headers)
-            res.write(JSON.stringify(err.response?.data));
-            res.end()
+            res.set(err.response?.headers)
+            res.status(err.response?.status).json(err.response?.data)
         })
 }
 
@@ -55,17 +51,15 @@ const search = (req, res) => {
             removeHeaders(res)
             
             // Response details and status
-            res.writeHead(response.status, response.headers)
-            res.write(JSON.stringify(response.data));
-            res.end()
+            res.set(response.headers)
+            res.status(response.status).json(response.data)
         })
         .catch((err) => {
             removeHeaders(res) // remove the extra headers
 
             // The Error response details and status
-            res.writeHead(err.response?.status, err.response?.headers)
-            res.write(JSON.stringify(err.response?.data));
-            res.end()
+            res.set(err.response?.headers)
+            res.status(err.response?.status).json(err.response?.data)
         })
 }
 
@@ -88,17 +82,15 @@ const list = (req, res) => {
             removeHeaders(res)
             
             // Response details and status
-            res.writeHead(response.status, response.headers)
-            res.write(JSON.stringify(response.data));
-            res.end()
+            res.set(response.headers)
+            res.status(response.status).json(response.data)
         })
         .catch((err) => {
             removeHeaders(res) // remove the extra headers
 
             // The Error response details and status
-            res.writeHead(err.response?.status, err.response?.headers)
-            res.write(JSON.stringify(err.response?.data));
-            res.end()
+            res.set(err.response?.headers)
+            res.status(err.response?.status).json(err.response?.data)
         })
 }
 
@@ -121,17 +113,15 @@ const listSimilarities = (req, res) => {
             removeHeaders(res)
             
             // Response details and status
-            res.writeHead(response.status, response.headers)
-            res.write(JSON.stringify(response.data));
-            res.end()
+            res.set(response.headers)
+            res.status(response.status).json(response.data)
         })
         .catch((err) => {
             removeHeaders(res) // remove the extra headers
 
             // The Error response details and status
-            res.writeHead(err.response?.status, err.response?.headers)
-            res.write(JSON.stringify(err.response?.data));
-            res.end()
+            res.set(err.response?.headers)
+            res.status(err.response?.status).json(err.response?.data)
         })
 }
 

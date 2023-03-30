@@ -20,17 +20,15 @@ const list = (req, res) => {
             removeHeaders(res)
             
             // Response details and status
-            res.writeHead(response.status, response.headers)
-            res.write(JSON.stringify(response.data));
-            res.end()
+            res.set(response.headers)
+            res.status(response.status).json(response.data)
         })
         .catch((err) => {
             removeHeaders(res) // remove the extra headers
 
             // The Error response details and status
-            res.writeHead(err.response?.status, err.response?.headers)
-            res.write(JSON.stringify(err.response?.data));
-            res.end()
+            res.set(err.response?.headers)
+            res.status(err.response?.status).json(err.response?.data)
         })
 }
 

@@ -13,6 +13,9 @@ const removeHeaders = (res) => {
     res.removeHeader("x-permitted-cross-domain-policies")
     res.removeHeader("referrer-policy")
     res.removeHeader("x-xss-protection")
+    res.removeHeader("etag")
 }
+
+
 
 module.exports = {removeHeaders}
